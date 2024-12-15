@@ -1,0 +1,127 @@
+<div class="">
+  <p-dataView
+    #dv
+    [value]="data"
+    [layout]="'list'"
+    (onChangeLayout)="cambiarVista($event)"
+  >
+    <ng-template pTemplate="header">
+      <div class="grid justify-content-end">
+        <div class="w-full text-2xl text-center">
+          {{ tittle }}
+        </div>
+        <div class="">
+          <p-dataViewLayoutOptions layout="layout"></p-dataViewLayoutOptions>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template let-evento pTemplate="listItem">
+      <div class="col-12">
+        <div
+          class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4  border-1 surface-border surface-card border-round shadow-1"
+        >
+          <img
+            class="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round"
+            [src]="evento.imagen"
+            [alt]="evento.image"
+          />
+          <div
+            class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4"
+          >
+            <div
+              class="flex flex-column align-items-center sm:align-items-start gap-3"
+            >
+              <div class="flex align-items-center justify-content-between gap-2">
+                <div class="text-2xl font-bold text-900">
+                  {{ evento.nombre }}
+                </div>
+
+                <div
+                  *ngIf="evento.destacar"
+                  class="bg-yellow-300 border-round p-3"
+                >
+                  Destacado
+                </div>
+              </div>
+              <div class="flex align-items-center gap-3">
+                <span class="flex align-items-center gap-2">
+                  <i class="pi pi-tag"></i>
+                  <span class="font-semibold">{{ evento.categoria }}</span>
+                </span>
+              </div>
+            </div>
+            <div
+              class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2"
+            >
+              <span [class]="evento.descuento ? 'text-2xl font-semibold line-through' : 'text-2xl font-semibold'"
+
+
+              >{{
+                "Bs" + evento.precio
+              }}</span>
+              <span *ngIf="evento.descuento" class="text-sm font-semibold">
+                {{"Bs" + (evento.precio - (evento.precio * evento.descuento / 100)).toFixed(0)}} con
+                {{ evento.descuento }}% de descuento
+              </span>
+
+              <button
+                pButton
+                (click)="ingresarCard(evento.id)"
+                icon="pi pi-eye"
+                class="md:align-self-end mb-2"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template let-promo pTemplate="gridItem">
+      <div class="col-12 sm:col-6 lg:col-12 xl:col-4 p-2">
+        <div class="p-4 border-1 surface-border surface-card border-round shadow-2">
+          <div
+            class="flex flex-wrap align-items-center justify-content-between gap-2"
+          >
+            <span class="flex align-items-center gap-2">
+              <i class="pi pi-tag"></i>
+              <span class="font-semibold">{{ promo.categoria }}</span>
+            </span>
+          </div>
+          <div class="flex flex-column align-items-center gap-3 py-5">
+            <img
+              class="w-9 shadow-2 border-round"
+              [src]="promo.imagen"
+              [alt]="promo.name"
+            />
+            <div class="text-2xl font-bold">{{ promo.nombre }}</div>
+          </div>
+          <div
+                  *ngIf="promo.destacar"
+                  class="bg-yellow-300 border-round p-3 mb-2 text-center"
+                >
+                  Destacado
+                </div>
+          <div class="flex align-items-center justify-content-between">
+            <span [class]="promo.descuento ? 'text-2xl font-semibold line-through' : 'text-2xl font-semibold'"
+
+
+              >{{
+                "Bs" + promo.precio
+              }}</span>
+              <span *ngIf="promo.descuento" class="text-sm font-semibold">
+                {{"Bs" + (promo.precio - (promo.precio * promo.descuento / 100)).toFixed(0)}} con
+                {{ promo.descuento }}% de descuento
+              </span>
+            <button
+              pButton
+              icon="pi pi-eye"
+              class="p-button-rounded"
+              (click)="ingresarCard(promo.id)"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-dataView>
+  <div class="w-2 h-5rem"></div>
+</div>
+<div class="fixed right-0" *ngIf="autenticado"></div>

@@ -1,0 +1,39 @@
+<p-toast></p-toast>
+<div>
+  <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+  <p-toolbar>
+    <ng-template pTemplate="left">
+      <div class="my-2">
+          <button pButton pRipple type="button" icon="pi pi-plus"  tooltipPosition="top" class="p-button-rounded mr-2 p-button-success" styleClass="p-button-sm" (click)="crearEvento()" ></button>
+          <button pButton pRipple type="button" icon="pi pi-pencil"  tooltipPosition="top" class=" p-button-rounded mr-2" styleClass="p-button-sm" (click)="editarEvento()"></button>
+          <button pButton pRipple type="button" icon="pi pi-trash"  tooltipPosition="top" class=" p-button-rounded mr-2 p-button-danger" styleClass="p-button-sm" (click)="eliminarEvento()"></button>
+          <button pButton pRipple type="button" icon="pi pi-info" tooltipPosition="top" class="p-button-rounded mr-2 p-button-warning" styleClass="p-button-sm" (click)="info()"></button>
+      </div>
+  </ng-template>
+  </p-toolbar>
+  <p-table [value]="eventos" [tableStyle]="{'min-width': '60rem'}"
+    [selectionMode]="'single'"
+    (onRowSelect)="onRowSelect($event)"  (onRowUnselect)="onRowUnselect()"
+    [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20]">
+
+    <ng-template pTemplate="header" >
+        <tr>
+            <th pSortableColumn="code" style="width:20%">Nombre <p-sortIcon field="code"></p-sortIcon></th>
+            <th pSortableColumn="name" style="width:20%">Fecha<p-sortIcon field="name"></p-sortIcon></th>
+            <th pSortableColumn="category" style="width:20%">Lugar <p-sortIcon field="category"></p-sortIcon></th>
+            <th pSortableColumn="quantity" style="width:20%">Categoría <p-sortIcon field="quantity"></p-sortIcon></th>
+            <th pSortableColumn="price" style="width:20%">Precios<p-sortIcon field="price"></p-sortIcon></th>
+
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-evento>
+        <tr [pSelectableRow]="evento" >
+            <td>{{evento.nombre}}</td>
+            <td>{{evento.fecha}} </td>
+            <td>{{evento.lugar}}</td>
+            <td>{{evento.categoria}}</td>
+            <td>{{evento.precio | currency: 'Bs'}}</td>
+        </tr>
+    </ng-template>
+</p-table>
+</div>

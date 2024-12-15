@@ -1,0 +1,52 @@
+<app-modal #modal></app-modal>
+<div
+  class="bg-blue-100 h-5rem -mt-2 fixed w-full z-3 flex align-items-center justify-content-between text-2xl px-4"
+>
+  <div>
+    <p-button
+        *ngIf="isvisible"
+        type="button"
+        icon="pi pi-cart-plus"
+        class="p-button-rounded p-button-text p-button-plain"
+        label=""
+        (click)="modal.openModal()"
+      >
+      </p-button>
+  </div>
+  <div>
+    <p-button
+        *ngIf="!isvisible"
+        type="button"
+        icon="pi pi-cog"
+        class="p-button-rounded p-button-text p-button-plain"
+        label=""
+        pTooltip="Panel de administración"
+        (click)="irPanelAdministracion()"
+      >
+      </p-button>
+  </div>
+<span class="w-10 text-center">Venta de Tickets</span>
+  <div class="">
+    <button
+      pButton
+      *ngIf="isvisible"
+      type="button"
+      icon="pi pi-sign-out"
+      class="p-button-danger p-button-rounded p-button-outlined p-button-sm hover:bg-red-500 hover:text-white"
+      label=""
+      (click)="cerrarSesion()"
+    ></button>
+  </div>
+  <div>
+    <p-button
+        *ngIf="!isvisible"
+        type="button"
+        icon="pi pi-user"
+        class="p-button-rounded p-button-text p-button-plain"
+        label=""
+        pTooltip="Iniciar sesión"
+        (click)="irLogIn()"
+      >
+      </p-button>
+  </div>
+</div>

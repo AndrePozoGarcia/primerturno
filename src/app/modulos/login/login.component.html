@@ -1,0 +1,41 @@
+<p-toast></p-toast>
+<div
+  class="w-full h-screen flex align-items-center justify-content-center"
+>
+  <p-card header="Ingresar al sistema">
+    <form
+      [formGroup]="loginForm"
+      class="w-full flex flex-column align-items-center justify-content-center gap-3 p-5"
+      (ngSubmit)="login()"
+    >
+      <div class="flex flex-column w-full gap-3">
+        <label class="">Correo:</label>
+        <input
+          pInputText
+          id="email"
+          type="email"
+          name="email"
+          class="w-20rem"
+          placeholder="email@ejemplo.com"
+          formControlName="email"
+        />
+        <small class="text-red-400" *ngIf="isRequired('email')">El correo es requerido</small>
+        <small class="text-red-400" *ngIf="isEmailRequired()">El correo no es válido</small>
+      </div>
+      <div class="flex flex-column w-full gap-3">
+        <label class="">Contraseña:</label>
+        <input
+          pInputText
+          id="password"
+          type="password"
+          name="password"
+          class="w-20rem"
+          placeholder="Escribe tu contraseña"
+          formControlName="password"
+        />
+        <small class="text-red-400" *ngIf="isRequired('password')">La contraseña es requerida</small>
+      </div>
+      <p-button label="Ingresar" icon="pi pi-user" class="" type="submit"></p-button>
+    </form>
+  </p-card>
+</div>

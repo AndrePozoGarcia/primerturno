@@ -1,0 +1,29 @@
+<div class="bg-blue-500">
+  <p-dialog
+    [modal]="true"
+    [(visible)]="isVisible"
+    class="p-fluid"
+    [style]="{ width: '50vw' }"
+  >
+    <ng-template pTemplate="content">
+      <div class="border-1 border-round p-3">
+        <h1>Información del evento</h1>
+        <p>Nombre: {{ evento.nombre }}</p>
+        <p>Fecha: {{ evento.fecha }}</p>
+        <p>Lugar: {{ evento.lugar }}</p>
+        <p>Categoría: {{ evento.categoria }}</p>
+        <p>Precio: {{ evento.precio | currency : "Bs" }}</p>
+        <p>Descripción: {{ evento.descripcion }}</p>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+      <button
+        pButton
+        type="button"
+        label="Cerrar"
+        (click)="cerrarModal()"
+      ></button>
+    </ng-template>
+  </p-dialog>
+</div>

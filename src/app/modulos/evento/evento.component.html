@@ -1,0 +1,110 @@
+<div class="mt-4 flex justify-content-center align-items-center">
+  <p-card [header]="evento.nombre" class="w-full">
+    <ng-template pTemplate="header">
+      <div class="grid">
+        <img
+          class="col-9"
+          alt="Card"
+          [height]="450"
+          responsive
+          [src]="evento.imagen"
+        />
+        <div class="col-3">
+          <p class="h-full flex flex-column px-2 justify-content-around py-8">
+            <span class="text-xl font-semibold flex"
+              >Categoria:
+              <div class="font-normal ml-1 font-italic">
+                {{ evento.categoria }}
+              </div></span
+            >
+            <span class="text-xl font-semibold flex"
+              >Fecha:
+              <div class="font-normal ml-1 font-italic">{{ evento.fecha }}</div>
+            </span>
+            <span class="text-xl font-semibold flex"
+              >Boletos disponibles:
+              <div class="font-normal ml-1 font-italic">
+                {{ evento.boletos }}
+              </div></span
+            >
+            <span class="text-xl font-semibold flex"
+              >Precio:
+              <div
+                [class]="
+                  evento.descuento
+                    ? 'font-normal ml-1 font-italic line-through'
+                    : 'font-normal ml-1 font-italic '
+                "
+              >
+                {{ evento.precio }} Bs
+              </div>
+              <div *ngIf="evento.descuento" class="font-normal ml-3 font-bold">
+                {{
+                  evento.precio - (evento.precio * evento.descuento) / 100
+                }}
+                Bs
+              </div>
+            </span>
+            <span *ngIf="evento.descuento" class="text-xl font-semibold flex"
+              >Descuento:
+              <div
+                *ngIf="evento.descuento"
+                class="font-normal ml-1 font-italic"
+              >
+                {{ evento.descuento }}%
+              </div>
+            </span>
+            <span class="text-xl font-semibold flex"
+              >Lugar:
+              <div class="font-normal ml-1 font-italic">
+                {{ evento.lugar }}
+              </div></span
+            >
+          </p>
+          <div class="flex align-items-center justify-content-center">
+            <button
+              pButton
+              icon=" pi pi-minus"
+              class="p-button-rounded"
+              (click)="decrementar()"
+              pTooltip="Restar boleto"
+              tooltipPosition="top"
+            ></button>
+            <div class="w-3 text-xl font-bold text-center">
+              {{ cantidadBoletos }}
+            </div>
+            <button
+              pButton
+              icon="pi pi-plus"
+              class="p-button-rounded"
+              (click)="incrementar()"
+              pTooltip="Agregar boleto"
+              tooltipPosition="top"
+            ></button>
+          </div>
+          <div class="ml-8 pt-4">Precio total: {{ montoTotal }} Bs</div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <div class="flex justify-content-between mr-4">
+        <p>
+          {{ evento.descripcion }}
+        </p>
+        <div class="">
+          <div class=" ">
+            <button
+              label="Agregar al carrito"
+              class="p-button-success"
+              pRipple
+              pButton
+              (click)="agregarAlCarrito()"
+              icon="pi pi-shopping-cart"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-card>
+</div>
+<div class="fixed right-0"></div>

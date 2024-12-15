@@ -1,0 +1,176 @@
+<p-toast></p-toast>
+<form [formGroup]="form" (ngSubmit)="guardarEvento()">
+  <p-dialog
+    [(visible)]="isvisible"
+    header="{{ tittleForm }}"
+    [modal]="true"
+    class="p-fluid"
+    [style]="{ width: '50vw' }"
+    (onHide)="cerrarModal()"
+  >
+    <ng-template pTemplate="content">
+      <div class="p-fluid p-formgrid grid">
+        <div class="form-group field col-8">
+          <label for="nombre">Nombre</label>
+          <input
+            type="text"
+            pInputText
+            id="nombre"
+            appRequiredField
+            formControlName="nombre"
+            [ngClass]="
+              submitted && form.get('nombre').invalid
+                ? 'ng-invalid ng-dirty'
+                : ''
+            "
+          />
+        </div>
+        <div class="form-group field col-4">
+          <label for="boletos">Boletos</label>
+          <p-inputNumber
+            type="text"
+            id="boletos"
+            [min]="1"
+            appRequiredField
+            formControlName="boletos"
+            [ngClass]="
+              submitted && form.get('boletos').invalid
+                ? 'ng-invalid ng-dirty'
+                : ''
+            "
+          />
+        </div>
+
+        <div class="form-group field col-4">
+          <label for="imagen">Imagen</label>
+          <input
+            type="text"
+            pInputText
+            id="imagen"
+            appRequiredField
+            formControlName="imagen"
+            [ngClass]="
+              submitted && form.get('imagen').invalid
+                ? 'ng-invalid ng-dirty'
+                : ''
+            "
+          />
+        </div>
+        <div class="form-group field col-4">
+          <label for="categoria">Categoría</label>
+          <input
+            type="text"
+            pInputText
+            id="categoria"
+            appRequiredField
+            formControlName="categoria"
+            [ngClass]="
+              submitted && form.get('categoria').invalid
+                ? 'ng-invalid ng-dirty'
+                : ''
+            "
+          />
+        </div>
+        <div class="form-group field col-4">
+          <label for="precio">Precio</label>
+          <p-inputNumber
+            id="precio"
+            [min]="1"
+            appRequiredField
+            formControlName="precio"
+            [ngClass]="
+              submitted && form.get('precio').invalid
+                ? 'ng-invalid ng-dirty'
+                : ''
+            "
+          />
+        </div>
+        <div class="form-group field col-4">
+          <label for="lugar">Lugar</label>
+          <input
+            type="text"
+            pInputText
+            id="lugar"
+            appRequiredField
+            formControlName="lugar"
+            [ngClass]="
+              submitted && form.get('lugar').invalid
+                ? 'ng-invalid ng-dirty'
+                : ''
+            "
+          />
+        </div>
+        <div class="form-group field col-4">
+          <label for="fecha">Fecha</label>
+          <p-calendar
+            type="text"
+            id="fecha"
+            appendTo="body"
+            [showIcon]="false"
+            [readonlyInput]="true"
+            formControlName="fecha"
+            [ngClass]="
+              submitted && form.get('fecha').invalid
+                ? 'ng-invalid ng-dirty'
+                : ''
+            "
+          />
+        </div>
+        <div class="form-group field col-4">
+          <label for="descuento">Descuento</label>
+          <p-inputNumber
+            type="text"
+            id="descuento"
+            [min]="1"
+            appRequiredField
+            formControlName="descuento"
+            [ngClass]="
+              submitted && form.get('descuento').invalid
+                ? 'ng-invalid ng-dirty'
+                : ''
+            "
+          />
+        </div>
+        <div class="form-group field flex ml-2 ">
+          <label for="destacar" class="mr-3">Destacar</label>
+
+          <p-inputSwitch
+            formControlName="destacar"
+            (onChange)="onSwitch($event.checked)"
+          >
+
+          </p-inputSwitch>
+        </div>
+        <div class="form-group field col-12">
+          <label for="descripcion">Descripción</label>
+          <textarea
+            id="descripcion"
+            pInputTextarea
+            rows="3"
+            cols="20"
+            formControlName="descripcion"
+          ></textarea>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <button
+        pButton
+        pRipple
+        (click)="cerrarModal()"
+        type="button"
+        label="cancelar"
+        icon="pi pi-times"
+        class="p-button-secondary p-button-rounded mr-2"
+      ></button>
+      <button
+        pButton
+        pRipple
+        label="guardar"
+        icon="pi pi-check"
+        class="p-button-rounded mr-2"
+        type="submit"
+      ></button>
+    </ng-template>
+  </p-dialog>
+</form>
