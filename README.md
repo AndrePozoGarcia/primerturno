@@ -4,11 +4,7 @@
 
 1. Clona este repositorio:
    bash
-   git clone https://github.com/AndrePozoGarcia/primerturno.git
-   
-   o
-
-   git clone git@github.com:AndrePozoGarcia/primerturno.git
+   git clone https://github.com/AndrePozoGarcia/primerturno.git o git clone git@github.com:AndrePozoGarcia/primerturno.git
    
 
 2. Navega al directorio del proyecto:
